@@ -16,7 +16,7 @@
         "patch": 0
       }
     },
-    "timestamp": "2019-05-10T12:38:36+10:00"
+    "timestamp": "2019-05-10T13:43:10+10:00"
   },
   "software": {
     "base": {
@@ -27,6 +27,12 @@
       "memory": {
         "required": 128,
         "recommended": 128
+      }
+    },
+    "scripts": {
+      "start": {
+        "language": "sh",
+        "content": "#!/bin/sh\r\nPID_FILE=/home/engines/run/bugglogger.pid\r\nexport PID_FILE\r\n. /home/engines/functions/system_functions.sh\r\ncd /home/app\r\nthin start -p 8000 -h 0.0.0.0 &\r\necho $? > $PID_FILE\r\nstartup_complete\r\nwait\r\n\r\nshutdown_complete\r\n\r\nexit\r\n"
       }
     },
     "installed_packages": [
